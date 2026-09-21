@@ -204,5 +204,5 @@ uv run --no-sync python scripts/smoke_wheel.py
 See [the current API contract](docs/contracts/api.md) for ownership, codec,
 admission and shutdown details, and [the boundary decision](docs/architecture/0001-native-boundary.md)
 for architecture tradeoffs. The project uses the [MIT license](LICENSE).
-Package-name availability remains a release decision; the project has not been
-published.
+The source is public on GitHub and the initial pre-alpha package is published
+on [PyPI](https://pypi.org/project/actorplane/0.1.0/).

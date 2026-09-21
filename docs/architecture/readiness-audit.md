@@ -28,7 +28,7 @@ This audit compares `actorplane.md` with executable evidence in the workspace. â
 | 3. Ownership under failure/overload | Partial, advancing | Drain, requests, component scopes, task leases, generation fencing, structured failures, supervisor notifications, diagnostics, detailed shutdown reports, TCP cleanup, World service leases, indexed route cleanup, and process-exit regressions exist. Further control scheduling, sustained stress, and hosted shutdown evidence remain. |
 | 4. Useful authoring library | Partial | General schemas/codecs, immutable component declarations, interfaces, typed ports, native links, startup staging, native envelopes, an initial Rust execution SDK, `TestWorld`, framed TCP, bounded CPU operations, and World services exist. Broader integrations and authoring tutorials remain. |
 | 5. Real application proof | Local initial proof | A bounded TCP loopback and connection workflow combine native echo, Python policy, requests, a scoped timer, cancellation, and zero-byte cleanup. Sustained application evidence remains. |
-| 6. Release readiness | Partial evidence only | MIT is selected, but project-name availability is unverified. Hosted platform CI, stress/fuzz results, benchmark baselines, wheels, tutorials, and final compatibility documentation remain. |
+| 6. Release readiness | Partial evidence only | MIT is selected and 0.1.0 is published on PyPI as a Windows CPython 3.11 wheel and verified source archive. Hosted platform CI, broader stress coverage, benchmark baselines, tutorials, and final compatibility documentation remain. Fuzz execution is disabled. |
 
 ## Feature ledger
 
@@ -55,11 +55,15 @@ This audit compares `actorplane.md` with executable evidence in the workspace. â
 | `TestWorld`/virtual time | Initial implementation validated | Python and Rust facades drive the real native SDK and core with one shared clock, controlled bounded replies, stable subscription/ingress ordering, and bounded cooperative pumps. Full traces repeat across 20 fresh Worlds. Blocking hooks require an external watchdog; arbitrary I/O and multithreaded replay are outside this contract. |
 | Stress/model/fuzz | Partial | Systematic race and budget tests plus independent models for 41,000 operation/route/queue mutations exist. Queue models assert action and outcome coverage and check every actor's queue against test-owned state. A bounded native publication stress run completed 237 lifecycle rounds over 60 seconds; see [stress evidence](../validation/native-stress.md). Combined resource/lock stress remains. Experimental fuzz sources are inactive; fuzz execution is disabled at the user's request. |
 | Benchmarks | Local samples | See [benchmark method](../validation/benchmark-method.md) for native queue and before/after index-scaling measurements. Controlled production baselines remain. |
-| License/name | Partial | MIT selected; name availability is unverified. |
+| License/name | Published | MIT selected; actorplane is registered on PyPI and the source repository is public. |
 
 Asyncio integration, free-threaded Python, coroutine handlers, remote actors, durability, hot reload, binary plugins, and similar features remain explicitly deferred by the architecture.
 
-Hosted CI is configured in the private [GitHub repository](https://github.com/krflol/actorplane).
+Hosted CI is configured in the public [GitHub repository](https://github.com/krflol/actorplane).
 The [first run](https://github.com/krflol/actorplane/actions/runs/35598889835)
 was blocked by GitHub account billing/spending limits before any of its four
 jobs started. It supplies no platform validation evidence.
+
+After the repository became public, [run 35600437624](https://github.com/krflol/actorplane/actions/runs/35600437624)
+started the native and Windows/Linux/macOS Python jobs. The billing gate did not
+block those runners; results remain subject to the completed job outcomes.
