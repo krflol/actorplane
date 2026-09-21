@@ -23,7 +23,7 @@ manifest-path = "crates/runtime-python/Cargo.toml"
 python-source = "python"
 module-name = "actorplane._native"
 features = ["extension-module"]
-exclude = ["python/actorplane/*.pyd", "python/actorplane/*.so", "**/__pycache__/**"]
+exclude = ["python/actorplane/*.pyd", "python/actorplane/*.pdb", "python/actorplane/*.so", "**/__pycache__/**"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

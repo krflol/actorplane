@@ -32,6 +32,6 @@ gate. The workflow also accepts manual dispatch after resolution.
 Current artifact SHA-256 digests:
 
 ```text
-e3e48154de7614f22779dfb5399162dae88ae390db70aa0560a3694edf447113  actorplane-0.1.0-cp311-cp311-win_amd64.whl
-00edb5553ed76f697c673fd6d4bcb98452f7332dc7a39f1438781b8741d1106c  actorplane-0.1.0.tar.gz
+8fc4b6cf2a97e0c97070e3381e14858378a3eca8dbeb5cab13934d8665fba380  actorplane-0.1.0-cp311-cp311-win_amd64.whl
+d6c178d06296c0b746cbfc07f0746b600ba2616618e74c653436e605ac2a2342  actorplane-0.1.0.tar.gz
 ```
