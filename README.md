@@ -19,6 +19,14 @@ a Windows x64 CPython 3.11 wheel and a source distribution:
 python -m pip install actorplane==0.1.0
 ```
 
+## Getting started
+
+Follow [the SQLite and pandas tutorial](docs/tutorials/sales-report.md) to build
+a nightly sales importer. One actor owns the database connection; another
+creates a DataFrame and writes the revenue report. The runnable example covers
+duplicate imports, transaction rollback, failed file writes and clean shutdown.
+It works with the published `actorplane==0.1.0` package and optional pandas.
+
 ## Run it
 
 Prerequisites: the pinned Rust 1.97.0 toolchain, GIL-enabled CPython 3.11, `uv`,

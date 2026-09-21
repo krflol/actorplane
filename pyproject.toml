@@ -17,6 +17,7 @@ classifiers = [
 
 [dependency-groups]
 dev = ["maturin==1.14.1", "pytest==8.4.2"]
+tutorial = ["pandas==3.0.6"]
 
 [tool.maturin]
 manifest-path = "crates/runtime-python/Cargo.toml"

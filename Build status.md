@@ -4,6 +4,7 @@ Updated September 21, 2026. The original contract is [[actorplane]]. The workspa
 
 ## Implemented
 
+- [Getting-started tutorial](docs/tutorials/sales-report.md) with an executable SQLite sales importer and pandas CSV report. It demonstrates connection ownership, bounded request batches, duplicate replay, transaction rollback, file replacement, and shutdown; Python database/report callbacks remain synchronous.
 - Python-free Rust core with World/actor generations, bounded mailboxes and retained payload budgets.
 - Native source/accumulator/timer/sink reference path and tracked native task lifetimes.
 - Queued delivery claims, child ownership scopes, stop fencing, drain mode, shared deadlines, and timeout reports.
@@ -34,19 +35,24 @@ Updated September 21, 2026. The original contract is [[actorplane]]. The workspa
 | 1. A real Rust World | Working initial native vertical slice with bounded lifecycle and race evidence. |
 | 2. One explicit Python boundary | Working initial boundary; hosted Windows x64, Linux x64 and macOS ARM64 Python tests, source builds and clean-wheel checks passed. |
 | 3. Ownership under failure/overload | Partial: drain, requests, component scopes, structured failures, supervisor notifications, diagnostics, detailed shutdown reports, TCP scopes, World service leases, and indexed route cleanup are implemented. Further control scheduling, sustained stress, and hosted shutdown evidence remain. |
-| 4. Useful authoring library | Partial: general schemas, components, interfaces, typed ports, native links, bounded startup staging, event envelopes, an initial Rust execution SDK, `TestWorld`, framed TCP, bounded CPU operations, and World services are implemented. Broader integrations and authoring tutorials remain. |
-| 5. Real application proof | Local initial proof: native TCP echo plus a Python policy workflow with active requests, an owned timer, cancellation, and cleanup. Sustained application/stress evidence remains. |
-| 6. Release readiness | Pre-alpha published and initial hosted matrix passed. Broader stress coverage, benchmark baselines, tutorials and compatibility review remain; fuzz execution is disabled. |
+| 4. Useful authoring library | Partial: general schemas, components, interfaces, typed ports, native links, bounded startup staging, event envelopes, an initial Rust execution SDK, `TestWorld`, framed TCP, bounded CPU operations, World services, and a SQLite/pandas getting-started tutorial are implemented. Broader integrations and authoring coverage remain. |
+| 5. Real application proof | Initial proof: native TCP echo with Python policy, plus a replay-safe SQLite importer and pandas report with failure recovery checks. Sustained application/stress evidence remains. |
+| 6. Release readiness | Pre-alpha published and initial hosted matrix passed. Broader stress coverage, benchmark baselines, documentation and compatibility review remain; fuzz execution is disabled. |
 
 ## Validation references
 
 The current API is documented in [[docs/contracts/api|API contract]]. Local Windows evidence is in [[docs/validation/windows-x64|Windows validation]], and measurement guidance is in [[docs/validation/benchmark-method|benchmark method]]. Current validation covers focused lifecycle, overload, request, drain, generation, diagnostic, and race behavior; it does not establish release-wide support or performance claims.
 
-Local validation passed **565 tests: 253 core, 96 native, one Rust TestWorld facade,
-and 215 Python tests**, plus workspace Clippy, formatting, Python dependency
+Local validation passed **577 tests: 253 core, 96 native, one Rust TestWorld facade,
+and 227 Python tests**, plus workspace Clippy, formatting, Python dependency
 isolation, a native build without default features, and a freshly installed MIT
 release-wheel smoke test. After making the repository public, [hosted run 35600713028](https://github.com/krflol/actorplane/actions/runs/35600713028) passed all four jobs: native checks and Python tests/source builds/clean-wheel checks on Windows, Linux and macOS. See [[docs/validation/hosted-platforms|platform evidence]]. Implementation used Luna delegates
 with integration and adversarial review in the parent task.
+
+The 12 SQLite/pandas tutorial cases cover replay, whole-batch rollback, report
+failure and recovery, summary limits, path collisions, invalid rows and empty
+input. The example also passed an isolated run and replay using published
+`actorplane==0.1.0` with `pandas==3.0.6` on Windows.
 
 ## Next vertical slice
 
