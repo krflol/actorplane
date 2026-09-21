@@ -1,0 +1,19 @@
+from typing import Any
+from .authoring import ActorRef, Event, World
+
+class TcpFrame(Event):
+    data: bytes
+    def __init__(self, data: bytes) -> None: ...
+
+class TcpListener:
+    owner: ActorRef
+    address: tuple[str, int]
+    def stats(self) -> dict[str, Any]: ...
+    def connections(self) -> tuple[ActorRef, ...]: ...
+    def close(self, mode: str = ..., deadline: float = ...) -> dict[str, Any]: ...
+
+def listen(world: World, owner: ActorRef, target: ActorRef, *, host: str = ..., port: int = ...,
+           max_connections: int = ..., max_frame_bytes: int = ...,
+           read_buffer_bytes: int = ..., write_buffer_bytes: int = ...,
+           read_timeout: float = ..., request_timeout: float = ..., write_timeout: float = ...) -> TcpListener: ...
+def native_echo(world: World, parent: ActorRef | None = ...) -> ActorRef: ...

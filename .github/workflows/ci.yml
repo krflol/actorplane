@@ -1,0 +1,65 @@
+name: Runtime contracts
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  native:
+    timeout-minutes: 20
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: 1.97.0
+          components: rustfmt, clippy
+      - run: cargo fmt --all -- --check
+      - run: cargo check --locked -p actorplane-native --no-default-features
+      - run: cargo test --locked -p actorplane-core -p actorplane-native -p actorplane-test --features native-io
+      - run: cargo clippy --locked -p actorplane-core -p actorplane-native -p actorplane-test --features native-io --all-targets -- -D warnings
+      - run: python scripts/check_dependency_firewall.py
+      - run: cargo run --locked -p actorplane-native --example native_counter
+      - run: cargo run --locked -p actorplane-native --example native_sdk
+      - run: cargo run --locked -p actorplane-test --example virtual_pipeline
+      - run: cargo run --locked -p actorplane-native --features native-io --example tcp_loopback
+      - run: cargo run --locked -p actorplane-native --example cpu
+      - run: cargo run --locked -p actorplane-native --example shared_service
+      - run: cargo run --locked --release -p actorplane-core --example index_scale
+      - run: cargo run --locked --release -p actorplane-core --example maintenance_scale
+      - run: cargo run --locked --release -p actorplane-core --example activity_scale
+      - run: cargo run --locked --release -p actorplane-core --example routing_batches
+      - run: cargo run --locked --release -p actorplane-native --example stress_runtime -- --ci --seed=0x1234
+  python:
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: 1.97.0
+      - uses: astral-sh/setup-uv@v6
+      - run: uv python install 3.11
+      - run: uv sync --frozen --no-install-project --python 3.11
+      - run: uv run --no-sync maturin develop --features extension-module,test-support
+      - run: uv run --no-sync pytest
+      - run: uv run --no-sync python examples/monitor.py
+      - run: uv run --no-sync python examples/request_reply.py
+      - run: uv run --no-sync python examples/supervision.py
+      - run: uv run --no-sync python examples/schemas.py
+      - run: uv run --no-sync python examples/components.py
+      - run: uv run --no-sync python examples/envelopes.py
+      - run: uv run --no-sync python examples/testing.py
+      - run: uv run --no-sync python examples/connection_workflow.py
+      - run: uv run --no-sync python examples/cpu.py
+      - run: uv run --no-sync python examples/services.py
+      - run: uv run --no-sync python examples/publications.py
+      - run: uv run --no-sync python scripts/measure_python_readiness.py
+      - run: uv run --no-sync maturin build --release --out dist
+      - run: uv run --no-sync python scripts/smoke_wheel.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wheel-${{ matrix.os }}
+          path: dist/*.whl

@@ -1,0 +1,30 @@
+[build-system]
+requires = ["maturin==1.8.3"]
+build-backend = "maturin"
+
+[project]
+name = "actorplane"
+version = "0.1.0"
+description = "A bounded Rust event runtime with a foreground Python actor driver"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.11,<3.12"
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Rust",
+]
+
+[dependency-groups]
+dev = ["maturin==1.8.3", "pytest==8.4.2"]
+
+[tool.maturin]
+manifest-path = "crates/runtime-python/Cargo.toml"
+python-source = "python"
+module-name = "actorplane._native"
+features = ["extension-module"]
+exclude = ["python/actorplane/*.pyd", "python/actorplane/*.so", "**/__pycache__/**"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

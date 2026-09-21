@@ -1,0 +1,9 @@
+[package]
+license.workspace = true
+name = "actorplane-core"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+[lib]
+path = "src/lib.rs"

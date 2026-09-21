@@ -1,0 +1,12 @@
+[package]
+name = "actorplane-test"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish = false
+
+[dependencies]
+actorplane-core.workspace = true
+actorplane-native = { workspace = true, features = ["test-runtime"] }
+

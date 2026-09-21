@@ -1,0 +1,31 @@
+[package]
+name = "actorplane-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2024"
+rust-version = "1.97"
+license = "MIT"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "=0.4.13"
+actorplane-core = { path = "../crates/runtime-core" }
+
+[workspace]
+members = ["."]
+
+[[bin]]
+name = "schema_wire"
+path = "fuzz_targets/schema_wire.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "routing_lifecycle"
+path = "fuzz_targets/routing_lifecycle.rs"
+test = false
+doc = false
+bench = false

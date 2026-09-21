@@ -1,0 +1,24 @@
+[package]
+license.workspace = true
+name = "actorplane-native"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish = false
+
+[features]
+test-runtime = ["tokio/test-util"]
+native-io = ["tokio/net", "tokio/io-util"]
+
+[dependencies]
+actorplane-core.workspace = true
+tokio.workspace = true
+
+[[example]]
+name = "native_counter"
+path = "examples/native_counter.rs"
+
+[[example]]
+name = "tcp_loopback"
+path = "examples/tcp_loopback.rs"
+required-features = ["native-io"]
