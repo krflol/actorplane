@@ -31,7 +31,7 @@ It works with the published `actorplane==0.1.0` package and optional pandas.
 
 Prerequisites: the pinned Rust 1.97.0 toolchain, GIL-enabled CPython 3.11, `uv`,
 and the platform's native Rust linker/build tools. Local validation used Windows
-x64 with CPython 3.11.8. [Hosted CI](https://github.com/krflol/actorplane/actions/runs/35600713028)
+x64 with CPython 3.11.8. [Hosted CI](https://github.com/krflol/actorplane/actions/runs/35629308482)
 passed native checks and Python 3.11.16 tests, source builds and clean-wheel
 checks on Windows x64, Linux x64 and macOS ARM64. See
 [platform evidence](docs/validation/hosted-platforms.md) for scope. Fuzz execution

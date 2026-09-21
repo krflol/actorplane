@@ -46,12 +46,13 @@ The current API is documented in [[docs/contracts/api|API contract]]. Local Wind
 Local validation passed **577 tests: 253 core, 96 native, one Rust TestWorld facade,
 and 227 Python tests**, plus workspace Clippy, formatting, Python dependency
 isolation, a native build without default features, and a freshly installed MIT
-release-wheel smoke test. After making the repository public, [hosted run 35600713028](https://github.com/krflol/actorplane/actions/runs/35600713028) passed all four jobs: native checks and Python tests/source builds/clean-wheel checks on Windows, Linux and macOS. See [[docs/validation/hosted-platforms|platform evidence]]. Implementation used Luna delegates
+release-wheel smoke test. [Hosted run 35629308482](https://github.com/krflol/actorplane/actions/runs/35629308482) passed all four jobs: native checks and 227 Python tests/source builds/clean-wheel checks on Windows, Linux and macOS. See [[docs/validation/hosted-platforms|platform evidence]]. Implementation used Luna delegates
 with integration and adversarial review in the parent task.
 
 The 12 SQLite/pandas tutorial cases cover replay, whole-batch rollback, report
 failure and recovery, summary limits, path collisions, invalid rows and empty
-input. The example also passed an isolated run and replay using published
+input. Those tests and the runnable example passed on all three hosted platforms.
+The example also passed an isolated run and replay using published
 `actorplane==0.1.0` with `pandas==3.0.6` on Windows.
 
 ## Next vertical slice
