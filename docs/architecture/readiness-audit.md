@@ -6,7 +6,7 @@ This audit compares `actorplane.md` with executable evidence in the workspace. â
 
 | Invariant | Status | Current evidence and limitation |
 |---|---|---|
-| I-01 Rust core without Python | Proved for core/native crates | Cargo dependency firewall and native build path exist; clean Python-free hosted builds remain to be observed. |
+| I-01 Rust core without Python | Proved for core/native crates | Cargo dependency firewall, native build without default features, Rust tests, formatting, Clippy and native examples passed in the hosted Linux job. |
 | I-02 Native path independent of Python | Validated for current paths | Native pipelines, framed TCP, and CPU operations progress and stop during measured GIL holds. Other integrations remain outside this evidence. |
 | I-03 Rust-owned routing/payloads | Validated for current payload types | Typed native buffers, general schema validation, queued delivery, and bounded ownership are implemented. Native envelopes carry identity, deadlines, correlation, causation, and bounded trace context. |
 | I-04 Defined ownership | Validated for current resources | Actor/component trees, typed links, task leases, requests, staged/held payloads, failure/control leases, diagnostics, TCP scopes, and World service leases have explicit ownership. Shared service work remains service-owned after holder stop; broader adapters remain. |
@@ -24,11 +24,11 @@ This audit compares `actorplane.md` with executable evidence in the workspace. â
 | Gate | Status | Evidence and remaining work |
 |---|---|---|
 | 1. A real Rust World | Proved for the initial slice | Native source/accumulator/timer/sink, framed TCP, bounded delivery, cleanup, and race tests exist. Sustained stress remains. |
-| 2. One explicit Python boundary | Partial | Typed initial codec, foreground driver, bounded native-to-Python delivery, held-GIL coverage, and clean Windows wheel exist. Hosted platform matrix remains. |
+| 2. One explicit Python boundary | Validated for initial platform matrix | Typed codec, foreground driver, bounded native-to-Python delivery, held-GIL coverage, and clean wheels passed with CPython 3.11.16 on hosted Windows x64, Linux x64 and macOS ARM64. Broader Python/platform support remains outside this evidence. |
 | 3. Ownership under failure/overload | Partial, advancing | Drain, requests, component scopes, task leases, generation fencing, structured failures, supervisor notifications, diagnostics, detailed shutdown reports, TCP cleanup, World service leases, indexed route cleanup, and process-exit regressions exist. Further control scheduling, sustained stress, and hosted shutdown evidence remain. |
 | 4. Useful authoring library | Partial | General schemas/codecs, immutable component declarations, interfaces, typed ports, native links, startup staging, native envelopes, an initial Rust execution SDK, `TestWorld`, framed TCP, bounded CPU operations, and World services exist. Broader integrations and authoring tutorials remain. |
 | 5. Real application proof | Local initial proof | A bounded TCP loopback and connection workflow combine native echo, Python policy, requests, a scoped timer, cancellation, and zero-byte cleanup. Sustained application evidence remains. |
-| 6. Release readiness | Partial evidence only | MIT is selected and 0.1.0 is published on PyPI as a Windows CPython 3.11 wheel and verified source archive. Hosted platform CI, broader stress coverage, benchmark baselines, tutorials, and final compatibility documentation remain. Fuzz execution is disabled. |
+| 6. Release readiness | Partial evidence only | MIT is selected and 0.1.0 is published on PyPI as a Windows CPython 3.11 wheel and verified source archive. The initial hosted platform matrix passed. Broader stress coverage, benchmark baselines, tutorials and final compatibility documentation remain. Fuzz execution is disabled. |
 
 ## Feature ledger
 
@@ -64,6 +64,7 @@ The [first run](https://github.com/krflol/actorplane/actions/runs/35598889835)
 was blocked by GitHub account billing/spending limits before any of its four
 jobs started. It supplies no platform validation evidence.
 
-After the repository became public, [run 35600437624](https://github.com/krflol/actorplane/actions/runs/35600437624)
-started the native and Windows/Linux/macOS Python jobs. The billing gate did not
-block those runners; results remain subject to the completed job outcomes.
+After the repository became public, the billing gate stopped blocking these
+runners. [Run 35600713028](https://github.com/krflol/actorplane/actions/runs/35600713028)
+passed all four jobs after correcting one scheduling-dependent test. See
+[hosted platform evidence](../validation/hosted-platforms.md).

@@ -34,9 +34,10 @@ in `target/pypi-installed-smoke.log`.
 
 The [hosted CI retry](https://github.com/krflol/actorplane/actions/runs/35598889835/attempts/2)
 again failed before any job started. GitHub reported account payments/spending
-limits, so this run supplies no platform validation evidence. Account billing
-must be resolved before hosted runners can execute; no code change clears that
-gate. The workflow also accepts manual dispatch after resolution.
+limits, so that run supplies no platform validation evidence. The repository
+was subsequently made public, which unblocked hosted runners. The native and
+Windows/Linux/macOS jobs then [passed](hosted-platforms.md). Those later CI
+results do not alter the hashes or files already published to PyPI.
 
 Current artifact SHA-256 digests:
 

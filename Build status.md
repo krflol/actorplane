@@ -32,11 +32,11 @@ Updated September 21, 2026. The original contract is [[actorplane]]. The workspa
 | Design gate | Current state |
 |---|---|
 | 1. A real Rust World | Working initial native vertical slice with bounded lifecycle and race evidence. |
-| 2. One explicit Python boundary | Working initial boundary and clean Windows wheel; hosted platform matrix remains. |
+| 2. One explicit Python boundary | Working initial boundary; hosted Windows x64, Linux x64 and macOS ARM64 Python tests, source builds and clean-wheel checks passed. |
 | 3. Ownership under failure/overload | Partial: drain, requests, component scopes, structured failures, supervisor notifications, diagnostics, detailed shutdown reports, TCP scopes, World service leases, and indexed route cleanup are implemented. Further control scheduling, sustained stress, and hosted shutdown evidence remain. |
 | 4. Useful authoring library | Partial: general schemas, components, interfaces, typed ports, native links, bounded startup staging, event envelopes, an initial Rust execution SDK, `TestWorld`, framed TCP, bounded CPU operations, and World services are implemented. Broader integrations and authoring tutorials remain. |
 | 5. Real application proof | Local initial proof: native TCP echo plus a Python policy workflow with active requests, an owned timer, cancellation, and cleanup. Sustained application/stress evidence remains. |
-| 6. Release readiness | Not complete: hosted CI/platform matrix, stress/fuzz coverage, benchmark baselines, tutorials, compatibility review, and name verification remain. |
+| 6. Release readiness | Pre-alpha published and initial hosted matrix passed. Broader stress coverage, benchmark baselines, tutorials and compatibility review remain; fuzz execution is disabled. |
 
 ## Validation references
 
@@ -45,11 +45,11 @@ The current API is documented in [[docs/contracts/api|API contract]]. Local Wind
 Local validation passed **565 tests: 253 core, 96 native, one Rust TestWorld facade,
 and 215 Python tests**, plus workspace Clippy, formatting, Python dependency
 isolation, a native build without default features, and a freshly installed MIT
-release-wheel smoke test. The [first hosted run](https://github.com/krflol/actorplane/actions/runs/35598889835) was blocked before all four jobs started by GitHub account billing/spending limits. Hosted platform validation remains pending. Implementation used Luna delegates
+release-wheel smoke test. After making the repository public, [hosted run 35600713028](https://github.com/krflol/actorplane/actions/runs/35600713028) passed all four jobs: native checks and Python tests/source builds/clean-wheel checks on Windows, Linux and macOS. See [[docs/validation/hosted-platforms|platform evidence]]. Implementation used Luna delegates
 with integration and adversarial review in the parent task.
 
 ## Next vertical slice
 
-Fuzz execution is disabled at the user's request; experimental sources remain outside CI. The next executable checks are the hosted platform build/test matrix and native stress workflow.
+Fuzz execution is disabled at the user's request; experimental sources remain outside CI. The hosted platform matrix and bounded native stress check now pass.
 
 Advance contention measurement and hosted platform/release evidence. Preserve the established schema, envelope, ownership, failure, shutdown, and publication-ticket guarantees in each extension. See [[docs/architecture/0017-publication-tickets|Publication tickets]], [[docs/architecture/0016-targeted-native-activity|Targeted native activity]], [[docs/architecture/0015-python-readiness|Python readiness]], [[docs/architecture/0014-indexed-event-maintenance|Indexed event maintenance]], [[docs/architecture/0013-indexed-routing-deadlines|Indexed routing and deadlines]], and [[docs/architecture/0012-world-services|World services]] for current execution, accounting, and lifecycle limits.
