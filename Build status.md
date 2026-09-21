@@ -1,6 +1,6 @@
 # Build status
 
-Updated September 21, 2026. The original contract is [[actorplane]]. The workspace contains a working Rust core/native slice and a PyO3 boundary, but it is not release-ready and has not been published.
+Updated September 21, 2026. The original contract is [[actorplane]]. The workspace contains a working Rust core/native slice and a PyO3 boundary. Version [0.1.0 is published on PyPI](https://pypi.org/project/actorplane/0.1.0/) as a pre-alpha Windows x64 CPython 3.11 wheel and source distribution; the full infrastructure-grade release gates remain incomplete.
 
 ## Implemented
 
@@ -24,7 +24,7 @@ Updated September 21, 2026. The original contract is [[actorplane]]. The workspa
 - Native Python readiness indexes with stable registration cursors, bounded metadata queries, failure priority, descendant-first cleanup, and detached condition-variable waits. Callback-created work and reused slots retain existing pump ordering; idle actors require no state/claim bridge calls.
 - Targeted native activity versions and coalesced wakes across ownership, lifecycle, routing, draining, operation, and service dependencies. Unrelated observers retain their versions and idle executor turns; generation replacement, timeout paths, and reentrant wakers have regression coverage.
 - Bounded publication tickets with first-batch route snapshots, per-source FIFO, round-robin bounded routing turns, fan-out/snapshot limits, target revalidation, staged-output integration, and retained terminal reports. Plain core callers pump `World.route_batch()`; NativeRuntime routes automatically and TestWorld requires explicit pumping.
-- MIT license decision and private GitHub repository at [krflol/actorplane](https://github.com/krflol/actorplane). Project-name availability remains unverified.
+- MIT license, private GitHub repository at [krflol/actorplane](https://github.com/krflol/actorplane), and the actorplane package registered on PyPI. See [[docs/validation/pypi-release|release evidence]] for archive-build and local verification details.
 - Native publication stress executable with bounded ticket retention, active/slow consumers, drain/stop races, generation reuse, accounting checks, and an independent watchdog. A local 60-second run completed 237 lifecycle rounds with no duplicate claims or ticket-report errors; see [[docs/validation/native-stress|native stress evidence]].
 
 ## Gate assessment

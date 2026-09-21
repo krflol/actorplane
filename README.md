@@ -12,6 +12,13 @@ of every capability in that contract.
 Source and hosted checks: [krflol/actorplane](https://github.com/krflol/actorplane).
 Licensed under [MIT](LICENSE).
 
+The [0.1.0 pre-alpha release](https://pypi.org/project/actorplane/0.1.0/) includes
+a Windows x64 CPython 3.11 wheel and a source distribution:
+
+```sh
+python -m pip install actorplane==0.1.0
+```
+
 ## Run it
 
 Prerequisites: the pinned Rust 1.97.0 toolchain, GIL-enabled CPython 3.11, `uv`,

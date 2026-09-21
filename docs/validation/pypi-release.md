@@ -1,7 +1,10 @@
-# PyPI release preparation
+# PyPI release 0.1.0
 
 The 0.1.0 pre-alpha artifacts were rebuilt on Windows x64 with CPython 3.11.8
-and Rust 1.97.0 on September 21, 2026. Upload is pending the CI follow-up.
+and Rust 1.97.0 on September 21, 2026. Both artifacts are published on
+[PyPI](https://pypi.org/project/actorplane/0.1.0/); their remote SHA-256 hashes
+match the local release files. Publication proceeded with local validation at
+the user's direction while hosted CI remained blocked by account billing.
 
 Maturin 1.8.3 left `workspace.default-members` pointing at an omitted test crate
 in the source archive. The packaging tool is now pinned to 1.14.1, which includes
@@ -22,6 +25,12 @@ checks native progress, schemas, components, requests, drain, supervision,
 virtual time, TCP, CPU, services, publication tickets, license inclusion and
 absence of test-only hooks. No fuzzing was run for this release preparation.
 Local logs are `target/pypi-build.log` and `target/pypi-wheel-smoke.log`.
+
+Strict Twine metadata checks passed for both files. After publication, a fresh
+environment installed `actorplane==0.1.0` from the official PyPI index with its
+cache disabled. An isolated interpreter verified the installed version, native
+event delivery, clean shutdown and test-hook exclusion. That result is captured
+in `target/pypi-installed-smoke.log`.
 
 The [hosted CI retry](https://github.com/krflol/actorplane/actions/runs/35598889835/attempts/2)
 again failed before any job started. GitHub reported account payments/spending
