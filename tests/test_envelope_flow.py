@@ -7,6 +7,7 @@ from actorplane import (
     Actor, Component, MessageOptions, Output, Pulse, TraceContext, World,
     component, event, handles, _native,
 )
+from actorplane.testing import TestWorld
 
 TRACE = TraceContext(b"a" * 16, b"b" * 8, True, (("tenant", "blue"),))
 
@@ -182,12 +183,11 @@ def test_output_fanout_has_unique_ids_and_exact_port_provenance():
             ctx.link(self.source.output, self.first.pulse)
             ctx.link(self.source.output, self.second.pulse)
 
-    with World() as world:
+    with TestWorld() as world:
         world.spawn(Parent)
         world.step()
         ports["source"].pulse.send(Pulse(1), options=MessageOptions(correlation_id=81, trace=TRACE))
-        world.step()
-        world.step()
+        world.run_until_idle()
     assert len(seen) == 2
     assert seen[0].event_id != seen[1].event_id
     assert {e.destination_port for e in seen} == {ports["first"].pulse.handle, ports["second"].pulse.handle}
