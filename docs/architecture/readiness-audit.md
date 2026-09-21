@@ -53,8 +53,13 @@ This audit compares `actorplane.md` with executable evidence in the workspace. â
 | Python readiness | Initial implementation validated | Native phase indexes, monotonic registration cursors, one metadata hint per query, dynamic same-pump delivery ordering, cleanup cutoffs, claim revalidation, and detached condition-variable waits replace idle registration scans. Real waits respect run/drain deadlines; virtual controls preserve their explicit quantum. Callbacks remain cooperative. |
 | Native I/O | Initial framed TCP validated | Owned listeners and connections, sequential typed request/reply, bounded framing and scratch, timeouts, stop/drain, and held-GIL evidence. No TLS, DNS, reconnect, multiplexing, or virtual socket simulation. |
 | `TestWorld`/virtual time | Initial implementation validated | Python and Rust facades drive the real native SDK and core with one shared clock, controlled bounded replies, stable subscription/ingress ordering, and bounded cooperative pumps. Full traces repeat across 20 fresh Worlds. Blocking hooks require an external watchdog; arbitrary I/O and multithreaded replay are outside this contract. |
-| Stress/model/fuzz | Partial | Systematic race and budget tests plus independent models for 41,000 operation/route/queue mutations exist. Queue models assert action and outcome coverage and check every actor's queue against test-owned state. Sustained stress and coverage-guided fuzz harnesses remain. |
+| Stress/model/fuzz | Partial | Systematic race and budget tests plus independent models for 41,000 operation/route/queue mutations exist. Queue models assert action and outcome coverage and check every actor's queue against test-owned state. A bounded native publication stress run completed 237 lifecycle rounds over 60 seconds; see [stress evidence](../validation/native-stress.md). Combined resource/lock stress remains. Experimental fuzz sources are inactive; fuzz execution is disabled at the user's request. |
 | Benchmarks | Local samples | See [benchmark method](../validation/benchmark-method.md) for native queue and before/after index-scaling measurements. Controlled production baselines remain. |
 | License/name | Partial | MIT selected; name availability is unverified. |
 
 Asyncio integration, free-threaded Python, coroutine handlers, remote actors, durability, hot reload, binary plugins, and similar features remain explicitly deferred by the architecture.
+
+Hosted CI is configured in the private [GitHub repository](https://github.com/krflol/actorplane).
+The [first run](https://github.com/krflol/actorplane/actions/runs/35598889835)
+was blocked by GitHub account billing/spending limits before any of its four
+jobs started. It supplies no platform validation evidence.

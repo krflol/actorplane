@@ -45,11 +45,11 @@ The current API is documented in [[docs/contracts/api|API contract]]. Local Wind
 Local validation passed **565 tests: 253 core, 96 native, one Rust TestWorld facade,
 and 215 Python tests**, plus workspace Clippy, formatting, Python dependency
 isolation, a native build without default features, and a freshly installed MIT
-release-wheel smoke test. Linux/macOS hosted jobs have not been observed. Implementation used Luna delegates
+release-wheel smoke test. The [first hosted run](https://github.com/krflol/actorplane/actions/runs/35598889835) was blocked before all four jobs started by GitHub account billing/spending limits. Hosted platform validation remains pending. Implementation used Luna delegates
 with integration and adversarial review in the parent task.
 
 ## Next vertical slice
 
 Fuzz execution is disabled at the user's request; experimental sources remain outside CI. The next executable checks are the hosted platform build/test matrix and native stress workflow.
 
-Advance sustained stress/fuzzing, contention measurement, and hosted platform/release evidence. Preserve the established schema, envelope, ownership, failure, shutdown, and publication-ticket guarantees in each extension. See [[docs/architecture/0017-publication-tickets|Publication tickets]], [[docs/architecture/0016-targeted-native-activity|Targeted native activity]], [[docs/architecture/0015-python-readiness|Python readiness]], [[docs/architecture/0014-indexed-event-maintenance|Indexed event maintenance]], [[docs/architecture/0013-indexed-routing-deadlines|Indexed routing and deadlines]], and [[docs/architecture/0012-world-services|World services]] for current execution, accounting, and lifecycle limits.
+Advance contention measurement and hosted platform/release evidence. Preserve the established schema, envelope, ownership, failure, shutdown, and publication-ticket guarantees in each extension. See [[docs/architecture/0017-publication-tickets|Publication tickets]], [[docs/architecture/0016-targeted-native-activity|Targeted native activity]], [[docs/architecture/0015-python-readiness|Python readiness]], [[docs/architecture/0014-indexed-event-maintenance|Indexed event maintenance]], [[docs/architecture/0013-indexed-routing-deadlines|Indexed routing and deadlines]], and [[docs/architecture/0012-world-services|World services]] for current execution, accounting, and lifecycle limits.

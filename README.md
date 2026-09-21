@@ -19,6 +19,10 @@ and the platform's native Rust linker/build tools. This build was verified on
 Windows x64 with CPython 3.11.8. Linux/macOS jobs are configured in CI but have
 not been executed from this workspace.
 
+The [first hosted run](https://github.com/krflol/actorplane/actions/runs/35598889835)
+was blocked before any job started by GitHub account billing/spending limits.
+Platform validation remains pending. Fuzz execution is disabled.
+
 The native example needs no Python package or interpreter linkage:
 
 ```sh
